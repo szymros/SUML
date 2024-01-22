@@ -4,6 +4,7 @@ import json
 import pickle
 from config.config import MAPPING_PATH, MODEL_SAVE_PATH
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 mapping = json.loads(open(MAPPING_PATH, "r").read())
@@ -24,7 +25,7 @@ with col2:
     selected_brand = st.session_state["mark"]
     fuel = st.selectbox("fuel type", list(fuel_mapping.keys()))
 with col3:
-    car_year = st.text_input("year",max_chars=4,value="2010")
+    car_year = st.selectbox("Select your car year", [i for i in range(2010, 2024)])
 with col4:
     mileage = st.text_input("mileage",value="100000")
 with col5:
@@ -38,7 +39,19 @@ def predict_price(model, data_point):
 
 
 if st.button("Predict price"):
-
     st.info(
         f"Your car price is: {predict_price(model, data_point)} PLN"
     )
+    years = {}
+    for i in range(data_point["year"][0] - 2, data_point["year"][0] + 2):
+        df_copy = data_point.copy()
+        df_copy["year"] = [i]
+        years[str(i)] = predict_price(model,df_copy)
+
+    bar_colors = ['tab:blue', 'tab:blue', 'tab:red', 'tab:blue', 'tab:blue']
+    fig, ax1 = plt.subplots()
+    ax1.bar(years.keys(), years.values(),color=bar_colors,)
+    ax1.set_title('Price change in the last 5 years')
+    ax1.set_xlabel('Year')
+    ax1.set_ylabel('Price')
+    st.pyplot(fig)
