@@ -1,7 +1,7 @@
 import pickle
 
 import pandas as pd
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
@@ -19,23 +19,23 @@ def get_data_set() -> tuple:
     return X_train, X_test, y_train, y_test
 
 
-def prepare_model(X_train, y_train) -> LinearRegression:
+def prepare_model(X_train, y_train) -> RandomForestRegressor:
 
-    lr = LinearRegression()
+    model = RandomForestRegressor(n_estimators=10, random_state=42)
     print("X_train shape: ", X_train)
-    lr.fit(X_train, y_train)
-    pickle.dump(lr, open(MODEL_SAVE_PATH, "wb"))
+    model.fit(X_train, y_train)
+    pickle.dump(model, open(MODEL_SAVE_PATH, "wb"))
 
-    return lr
+    return model
 
 
-def evaluate_model(model: LinearRegression, X_test, y_test) -> tuple:
+def evaluate_model(model: RandomForestRegressor, X_test, y_test) -> tuple:
     y_pred = model.predict(X_test)
     score = r2_score(y_test, y_pred)
     return score
 
 
-def save_model(model: LinearRegression):
+def save_model(model: RandomForestRegressor):
     pickle.dump(model, open(MODEL_SAVE_PATH, "wb"))
 
 
@@ -43,7 +43,7 @@ def model_pipeline():
     X_train, X_test, y_train, y_test = get_data_set()
     model = prepare_model(X_train, y_train)
     score = evaluate_model(model, X_test, y_test)
-    print(f"Model r2 score: {score}")
+    print(f"Model r2 score: {score}, {model.score(X_test, y_test)}")
     save_model(model)
     return score
 
