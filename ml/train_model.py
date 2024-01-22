@@ -5,7 +5,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
-from ml.config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
+from config.config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
 
 
 def get_data_set() -> tuple:
@@ -22,6 +22,7 @@ def get_data_set() -> tuple:
 def prepare_model(X_train, y_train) -> LinearRegression:
 
     lr = LinearRegression()
+    print("X_train shape: ", X_train)
     lr.fit(X_train, y_train)
     pickle.dump(lr, open(MODEL_SAVE_PATH, "wb"))
 
@@ -45,3 +46,7 @@ def model_pipeline():
     print(f"Model r2 score: {score}")
     save_model(model)
     return score
+
+
+if __name__ == "__main__":
+    model_pipeline()
