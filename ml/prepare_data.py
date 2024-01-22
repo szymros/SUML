@@ -3,7 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from ml.config import FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH, RAW_DATASET_PATH
+from config.config import FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH, RAW_DATASET_PATH
 
 
 def prepare_data():
@@ -44,5 +44,9 @@ def prepare_data():
     # save mappings
     mappings = {"mark": mark_cat_mapping, "fuel": fuel_cat_mapping}
     json.dump(mappings, open(MAPPING_PATH, "w"))
-    
+
     return dataset
+
+
+if __name__ == "__main__":
+    prepare_data()
