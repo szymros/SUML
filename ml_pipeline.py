@@ -1,3 +1,5 @@
+"""Main script for running the data preparation and model training pipeline for this project."""
+
 from ml.prepare_data import prepare_data
 from ml.train_model import model_pipeline
 

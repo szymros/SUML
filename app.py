@@ -1,3 +1,8 @@
+"""This module is used for predicting car prices using a machine learning model.
+ It includes a Streamlit interface
+  for user input and visualization of price predictions.
+"""
+
 import json
 import pickle
 
@@ -43,6 +48,15 @@ data_point = pd.DataFrame(
 
 
 def predict_price(model, data_point):
+    """Predict the price of a car based on model input and a data point.
+
+        Args:
+            model: The trained machine learning model for price prediction.
+            data_point: A DataFrame containing the features of the car.
+
+        Returns:
+            The predicted price of the car as an integer.
+    """
     prediction = model.predict(data_point)
     return int(prediction)
 

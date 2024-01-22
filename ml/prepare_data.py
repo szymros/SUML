@@ -1,3 +1,10 @@
+"""
+This module is responsible for preparing and preprocessing the dataset
+for the machine learning model.
+It includes data cleaning, outlier removal, encoding of categorical features,
+and saving the processed dataset.
+"""
+
 import json
 
 import pandas as pd
@@ -18,15 +25,15 @@ def prepare_data():
     dataset = dataset[
         (dataset["mileage"] > describe["mileage"]["10%"])
         & (dataset["mileage"] < describe["mileage"]["90%"])
-    ]
+        ]
     dataset = dataset[
         (dataset["vol_engine"] > describe["vol_engine"]["10%"])
         & (dataset["vol_engine"] < describe["vol_engine"]["90%"])
-    ]
+        ]
     dataset = dataset[
         (dataset["year"] > describe["year"]["10%"])
         & (dataset["year"] < describe["year"]["90%"])
-    ]
+        ]
     dataset = dataset[dataset["fuel"] != "CNG"]
 
     # encode categorical features
