@@ -3,7 +3,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from config import FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH, RAW_DATASET_PATH
+from ml.config import FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH, RAW_DATASET_PATH
 
 
 def prepare_data():

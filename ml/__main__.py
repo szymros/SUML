@@ -1,5 +1,5 @@
-from prepare_data import prepare_data
-from train_model import model_pipeline
+from ml.prepare_data import prepare_data
+from ml.train_model import model_pipeline
 
 
 def main():

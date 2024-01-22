@@ -2,10 +2,10 @@ import pickle
 
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import f1_score
+from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
-from config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
+from ml.config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
 
 
 def get_data_set() -> tuple:
@@ -30,9 +30,8 @@ def prepare_model(X_train, y_train) -> LinearRegression:
 
 def evaluate_model(model: LinearRegression, X_test, y_test) -> tuple:
     y_pred = model.predict(X_test)
-    score = f1_score(y_test, y_pred)
-    accuracy = model.score(X_test, y_test)
-    return score, accuracy
+    score = r2_score(y_test, y_pred)
+    return score
 
 
 def save_model(model: LinearRegression):
@@ -42,7 +41,7 @@ def save_model(model: LinearRegression):
 def model_pipeline():
     X_train, X_test, y_train, y_test = get_data_set()
     model = prepare_model(X_train, y_train)
-    score, accuracy = evaluate_model(model, X_test, y_test)
-    print(f"Model f1 score: {score} \nModel accuracy: {accuracy}")
+    score = evaluate_model(model, X_test, y_test)
+    print(f"Model r2 score: {score}")
     save_model(model)
     return score
