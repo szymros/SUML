@@ -1,11 +1,11 @@
-import numpy as np
-import streamlit as st
 import json
 import pickle
-from config.config import MAPPING_PATH, MODEL_SAVE_PATH
-import pandas as pd
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
+import pandas as pd
+import streamlit as st
+
+from config.config import MAPPING_PATH, MODEL_SAVE_PATH
 
 mapping = json.loads(open(MAPPING_PATH, "r").read())
 mark_mapping = mapping["mark"]
@@ -27,11 +27,20 @@ with col2:
 with col3:
     car_year = st.selectbox("Select your car year", [i for i in range(2010, 2024)])
 with col4:
-    mileage = st.text_input("mileage",value="100000")
+    mileage = st.text_input("mileage", value="100000")
 with col5:
-    vol_engine = st.text_input("engine volume", max_chars=3,value="1.6")
+    vol_engine = st.text_input("engine volume", max_chars=3, value="1.6")
 
-data_point = pd.DataFrame({"mark": [mark_mapping[mark]], "fuel": [fuel_mapping[fuel]], "vol_engine": [int(int(vol_engine.replace(".",""))*100)], "year": [int(car_year)], "mileage": [int(mileage)]})
+data_point = pd.DataFrame(
+    {
+        "mark": [mark_mapping[mark]],
+        "fuel": [fuel_mapping[fuel]],
+        "vol_engine": [int(int(vol_engine.replace(".", "")) * 100)],
+        "year": [int(car_year)],
+        "mileage": [int(mileage)],
+    }
+)
+
 
 def predict_price(model, data_point):
     prediction = model.predict(data_point)
@@ -39,19 +48,21 @@ def predict_price(model, data_point):
 
 
 if st.button("Predict price"):
-    st.info(
-        f"Your car price is: {predict_price(model, data_point)} PLN"
-    )
+    st.info(f"Your car price is: {predict_price(model, data_point)} PLN")
     years = {}
     for i in range(data_point["year"][0] - 2, data_point["year"][0] + 2):
         df_copy = data_point.copy()
         df_copy["year"] = [i]
-        years[str(i)] = predict_price(model,df_copy)
+        years[str(i)] = predict_price(model, df_copy)
 
-    bar_colors = ['tab:blue', 'tab:blue', 'tab:red', 'tab:blue', 'tab:blue']
+    bar_colors = ["tab:blue", "tab:blue", "tab:red", "tab:blue", "tab:blue"]
     fig, ax1 = plt.subplots()
-    ax1.bar(years.keys(), years.values(),color=bar_colors,)
-    ax1.set_title('Price change in the last 5 years')
-    ax1.set_xlabel('Year')
-    ax1.set_ylabel('Price')
+    ax1.bar(
+        years.keys(),
+        years.values(),
+        color=bar_colors,
+    )
+    ax1.set_title("Price change in the last 5 years")
+    ax1.set_xlabel("Year")
+    ax1.set_ylabel("Price")
     st.pyplot(fig)

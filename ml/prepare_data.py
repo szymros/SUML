@@ -1,9 +1,9 @@
 import json
 
-import numpy as np
 import pandas as pd
 
-from config.config import FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH, RAW_DATASET_PATH
+from config.config import (FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH,
+                           RAW_DATASET_PATH)
 
 
 def prepare_data():
