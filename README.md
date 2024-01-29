@@ -18,9 +18,9 @@ Second approach:
 
 **1. Clone the main Branch**: First, clone the main branch of our project, which includes all necessary files.
 
-**3. Modify run_app.spec**: Provide local paths to system default python library and path to app code in run_app.spec file located in build folder.
+**2. Modify run_app.spec**: Provide local paths to system default python library and path to app code in run_app.spec file located in build folder.
 
-**4. Compile the app**: Run build.sh script located in build folder. The compiled binary will be found in build/distr folder. For linux, make sure binutils is installed in the system. The binary file can be freely moved to and ran in another directory.
+**3. Compile the app**: Run build.sh script located in build folder. The compiled binary will be found in build/distr folder. For linux, make sure binutils is installed in the system. The binary file can be freely moved to and ran in another directory.
 
 Python 3.10.9
 
