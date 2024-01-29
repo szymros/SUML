@@ -12,5 +12,5 @@ else
     exit 1
 fi
 
-# Create binary using pyinstaller
+# Create binary using PyInstaller
 pyinstaller ./run_app.spec --clean

@@ -14,9 +14,6 @@ from ..config.config import (FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH,
 
 
 def prepare_data():
-    """
-    prepare data function
-    """
     dataset = pd.read_csv(RAW_DATASET_PATH)
     dataset = dataset[FEATURES]
 

@@ -1,3 +1,6 @@
+# This spec file encodes the script name and options for pyinstaller command.
+# Used to bundle streamlit and altair data files with the app
+
 # -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
