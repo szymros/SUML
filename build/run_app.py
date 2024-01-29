@@ -1,4 +1,7 @@
-"""app.py wrapper file"""
+"""
+Wrapper file for app.py. This script sets the config options and runs the streamlit application module.
+Used by PyInstaller as a base script in creating a single executable.
+"""
 
 import os
 import streamlit.web.bootstrap
