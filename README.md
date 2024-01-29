@@ -20,7 +20,7 @@ Second approach:
 
 **2. Modify run_app.spec**: Provide local paths to system default python library and path to app code in run_app.spec file located in build folder.
 
-**3. Compile the app**: Run build.sh script located in build folder. The compiled binary will be found in build/distr folder. For linux, make sure binutils is installed in the system. The binary file can be freely moved to and ran in another directory.
+**3. Compile the app**: Run build.sh script located in build folder. The compiled binary will be found in build/dist folder. For linux, make sure binutils is installed in the system. The binary file can be freely moved to and ran in another directory.
 
 Python 3.10.9
 
