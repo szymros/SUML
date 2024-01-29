@@ -9,11 +9,14 @@ import json
 
 import pandas as pd
 
-from config.config import (FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH,
+from ..config.config import (FEATURES, MAPPING_PATH, PREPARED_DATASET_PATH,
                            RAW_DATASET_PATH)
 
 
 def prepare_data():
+    """
+    prepare data function
+    """
     dataset = pd.read_csv(RAW_DATASET_PATH)
     dataset = dataset[FEATURES]
 
@@ -50,7 +53,8 @@ def prepare_data():
 
     # save mappings
     mappings = {"mark": mark_cat_mapping, "fuel": fuel_cat_mapping}
-    json.dump(mappings, open(MAPPING_PATH, "w"))
+    with open(MAPPING_PATH, 'w', encoding="utf-8") as f:
+        json.dump(mappings, f, ensure_ascii=False, indent=4)
 
     return dataset
 
