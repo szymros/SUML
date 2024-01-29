@@ -4,7 +4,7 @@
 This project is centered around the development of a machine learning model that aims to accurately predict the prices of cars. Our model uses car brand, fuel type, year of manufacture, mileage, and engine volume, to make its predictions. Model is based on data from a well-known polish car sale site.
 
 # Usage
-The easiest way to use this app is to run the binary file or open it in streamlit cloud [link].
+The easiest way to use this app is to run it locally using the binary file or open it in streamlit cloud [link].
 
 Second approach:
 
@@ -18,11 +18,11 @@ Second approach:
 
 **1. Clone the Frontend Branch**: First, clone the frontend branch of our project, which includes all necessary files.
 
-**2. Install the necessary packages**: Install packages provided in requirements.txt file.
+**2. Install packages**: Install the necessary packages provided in requirements.txt file.
 
-**3. Provide local machine paths**: In run_app.spec file provide local machine paths to python library and path to app code.
+**3. Modify run_app.spec**: Provide local machine paths to python library and path to app code in run_app.spec file.
 
-**4. Run pyinstaller**: Run the following command to create the binary: pyinstaller run_app.spec --clean 
+**4. Compile the app**: Run the following command to create the binary: pyinstaller run_app.spec --clean 
 
 Python 3.10.9
 
