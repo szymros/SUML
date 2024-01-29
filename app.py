@@ -12,12 +12,15 @@ import streamlit as st
 
 from config.config import MAPPING_PATH, MODEL_SAVE_PATH
 
-mapping = json.loads(open(MAPPING_PATH, "r").read())
+with open(MAPPING_PATH, 'r', encoding="utf-8") as f:
+    content = f.read()
+
+mapping = json.loads(content)
 mark_mapping = mapping["mark"]
 fuel_mapping = mapping["fuel"]
 
-model = pickle.load(open(MODEL_SAVE_PATH, "rb"))
-
+with open(MODEL_SAVE_PATH, "rb") as f:
+    model = pickle.load(f)
 
 st.title("Car Price Prediction :car:")
 
@@ -30,7 +33,7 @@ with col2:
     selected_brand = st.session_state["mark"]
     fuel = st.selectbox("fuel type", list(fuel_mapping.keys()))
 with col3:
-    car_year = st.selectbox("Select your car year", [i for i in range(2010, 2024)])
+    car_year = st.selectbox("Select your car year", list(range(2010, 2024)))
 with col4:
     mileage = st.text_input("mileage", value="100000")
 with col5:
@@ -47,7 +50,7 @@ data_point = pd.DataFrame(
 )
 
 
-def predict_price(model, data_point):
+def predict_price(current_model, current_data_point):
     """Predict the price of a car based on model input and a data point.
 
         Args:
@@ -57,7 +60,7 @@ def predict_price(model, data_point):
         Returns:
             The predicted price of the car as an integer.
     """
-    prediction = model.predict(data_point)
+    prediction = current_model.predict(current_data_point)
     return int(prediction)
 
 

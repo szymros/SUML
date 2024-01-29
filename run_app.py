@@ -1,3 +1,5 @@
+"""app.py wrapper file"""
+
 import os
 import streamlit.web.bootstrap
 

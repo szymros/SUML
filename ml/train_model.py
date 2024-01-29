@@ -12,7 +12,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split
 
-from config.config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
+from ..config.config import MODEL_SAVE_PATH, PREPARED_DATASET_PATH
 
 
 def get_data_set() -> tuple:
@@ -44,8 +44,12 @@ def prepare_model(X_train, y_train) -> RandomForestRegressor:
     model = RandomForestRegressor(n_estimators=10, random_state=42)
     print("X_train shape: ", X_train)
     model.fit(X_train, y_train)
-    pickle.dump(model, open(MODEL_SAVE_PATH, "wb"))
+    with open(MODEL_SAVE_PATH, 'wb') as model:
+        pickle.dump(model, protocol=pickle.HIGHEST_PROTOCOL)
 
+
+    with open(MODEL_SAVE_PATH, 'wb') as model:
+        pickle.dump(model, protocol=pickle.HIGHEST_PROTOCOL)
     return model
 
 
@@ -71,7 +75,8 @@ def save_model(model: RandomForestRegressor):
         Args:
             model: The trained RandomForest model to be saved.
     """
-    pickle.dump(model, open(MODEL_SAVE_PATH, "wb"))
+    with open(MODEL_SAVE_PATH, "wb") as f:
+        pickle.dump(model, f)
 
 
 def model_pipeline():
