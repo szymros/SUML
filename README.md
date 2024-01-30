@@ -4,7 +4,7 @@
 This project is centered around the development of a machine learning model that aims to accurately predict the prices of cars. Our model uses car brand, fuel type, year of manufacture, mileage, and engine volume, to make its predictions. Model is based on data from a well-known polish car sale site.
 
 # Usage
-The easiest way to use this app is to run it locally using the binary files located in the bin directory, which can be downloaded individually or through cloning the repository. Another is to open it in streamlit cloud [link].
+The easiest way to use this app is to run it locally using the binary files located in the bin directory, which can be downloaded individually or through cloning the repository or just from https://github.com/szymros/SUML/raw/main/bin/win/run_app.exe?download=. Another is to open it in streamlit cloud .
 
 Second approach:
 
